@@ -1629,7 +1629,7 @@ function renderMainShell() {
   // Header
   h += '<div class="se-header">';
   h += '<div class="se-header-left">';
-  h += '<div class="se-header-icon">' + esc('\u{1F441}') + '</div>';
+  h += '<div class="se-header-icon">' + esc('[EYE]') + '</div>';
   h += '<div>';
   h += '<div class="se-header-title">SENTINEL EYE</div>';
   h += '<div class="se-header-subtitle">Global Cyber Threat Detection &amp; Counter-Operations Platform</div>';
@@ -1681,14 +1681,14 @@ function renderMainShell() {
   h += '<div class="se-tab-bar" id="se-tab-bar">';
 
   var tabs = [
-    { id: 'situation', label: 'Situational Awareness', icon: '\u{1F30D}' },
-    { id: 'nations', label: 'Nation-State Monitor', icon: '\u{1F3F4}' },
-    { id: 'predict', label: 'Attack Prediction', icon: '\u{1F52E}' },
+    { id: 'situation', label: 'Situational Awareness', icon: '[SA]' },
+    { id: 'nations', label: 'Nation-State Monitor', icon: '[NS]' },
+    { id: 'predict', label: 'Attack Prediction', icon: '[AP]' },
     { id: 'earlywarning', label: 'Early Warning', icon: '[!]' },
-    { id: 'apttrack', label: 'APT Tracking', icon: '\u{1F50D}' },
+    { id: 'apttrack', label: 'APT Tracking', icon: '[AT]' },
     { id: 'counterops', label: 'Counter Operations', icon: '[X]' },
-    { id: 'shield', label: 'Infrastructure Shield', icon: '\u{1F6E1}' },
-    { id: 'intelfusion', label: 'Intelligence Fusion', icon: '\u{1F9E0}' },
+    { id: 'shield', label: 'Infrastructure Shield', icon: '[IS]' },
+    { id: 'intelfusion', label: 'Intelligence Fusion', icon: '[IF]' },
     { id: 'warsim', label: 'Cyber War Simulator', icon: '[W]' },
     { id: 'command', label: 'Command Authority', icon: '[C]' }
   ];
@@ -2470,7 +2470,7 @@ function wargameAAR() {
   var content = document.getElementById('se-content');
   if (!content) return;
   var h = '';
-  h += '<div class="se-section-head"><span class="se-section-icon">\u{1F4CB}</span> AFTER-ACTION REVIEW</div>';
+  h += '<div class="se-section-head"><span class="se-section-icon">[>]</span> AFTER-ACTION REVIEW</div>';
   h += '<div class="se-card-3d">';
   h += '<div class="se-card-title" style="margin-bottom:12px">EXERCISE COMPLETE — AFTER-ACTION REVIEW</div>';
   h += '<div class="se-grid-2">';
@@ -2504,7 +2504,7 @@ function planCounterOp() {
   var h = '';
   h += '<div class="se-card" style="border-color:#00aaff">';
   h += '<div style="color:#00aaff;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px">';
-  h += '\u{1F6E1} OPERATION PLAN GENERATED</div>';
+  h += '[+] OPERATION PLAN GENERATED</div>';
   h += '<div class="se-grid-2" style="margin-bottom:12px">';
   h += '<div><span class="se-muted">Phase 1:</span> <span style="color:#c8d8e8">Reconnaissance — Map adversary infrastructure (72h)</span></div>';
   h += '<div><span class="se-muted">Phase 2:</span> <span style="color:#c8d8e8">Access Development — Identify entry points (48h)</span></div>';
@@ -2533,7 +2533,7 @@ function generateReport(reportType) {
   var content = reportTemplates[reportType] || 'Report type not recognized.';
   var h = '<div class="se-card" style="border-color:#00aaff">';
   h += '<div style="color:#00aaff;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px">';
-  h += '\u{1F4C4} GENERATED REPORT — ' + esc(reportType.toUpperCase()) + '</div>';
+  h += '[>] GENERATED REPORT — ' + esc(reportType.toUpperCase()) + '</div>';
   h += '<pre style="font-size:11px;color:#c8d8e8;white-space:pre-wrap;line-height:1.6;margin:0">' + esc(content) + '</pre>';
   h += '<div style="margin-top:12px;font-size:10px;color:#5a7a9a">Generated: ' + new Date().toISOString() + ' | Classification: OPERATIONAL</div>';
   h += '</div>';
@@ -2553,7 +2553,7 @@ function launchTabletop(exerciseId) {
   if (!area) return;
   var h = '<div class="se-card" style="border-color:#00aaff">';
   h += '<div style="color:#00aaff;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px">';
-  h += '\u{1F3AF} TABLETOP EXERCISE LAUNCHED</div>';
+  h += '[>] TABLETOP EXERCISE LAUNCHED</div>';
   h += '<div style="font-size:12px;color:#c8d8e8;line-height:1.8">';
   h += '<div>Scenario: Coordinated ransomware attack on healthcare sector</div>';
   h += '<div>Participants: SOC Team, IR Team, Legal, Communications, Executive Leadership</div>';
@@ -2592,7 +2592,7 @@ function runWhatIf() {
 
   var h = '<div class="se-card" style="border-color:#ffaa00">';
   h += '<div style="color:#ffaa00;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px">';
-  h += '\u{1F52E} WHAT-IF ANALYSIS: ' + esc(eventText).toUpperCase() + '</div>';
+  h += '[>] WHAT-IF ANALYSIS: ' + esc(eventText).toUpperCase() + '</div>';
   h += '<div class="se-table-wrap"><table class="se-table">';
   h += '<thead><tr><th>Predicted Actor</th><th>Target</th><th>Attack Type</th><th>Probability</th><th>Timeline</th></tr></thead>';
   h += '<tbody>';
@@ -2618,7 +2618,7 @@ function viewPlaybook(pbId) {
   if (!area) return;
   var h = '<div class="se-card" style="border-color:#00aaff">';
   h += '<div style="color:#00aaff;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px">';
-  h += '\u{1F4D6} INCIDENT RESPONSE PLAYBOOK: ' + esc(pbId || 'GENERAL').toUpperCase() + '</div>';
+  h += '[>] INCIDENT RESPONSE PLAYBOOK: ' + esc(pbId || 'GENERAL').toUpperCase() + '</div>';
   h += '<div style="font-size:12px;color:#c8d8e8;line-height:1.8">';
   h += '<div style="color:#ffaa00;font-weight:700">Phase 1: Detection &amp; Analysis</div>';
   h += '<div>• Validate alert through secondary data source</div>';
@@ -2647,7 +2647,7 @@ function createIntelProduct(productType) {
   if (!area) return;
   var h = '<div class="se-card" style="border-color:#00aaff">';
   h += '<div style="color:#00aaff;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:8px">';
-  h += '\u{1F4C4} INTELLIGENCE PRODUCT: ' + esc(productType || 'SPOT REPORT').toUpperCase() + '</div>';
+  h += '[>] INTELLIGENCE PRODUCT: ' + esc(productType || 'SPOT REPORT').toUpperCase() + '</div>';
   h += '<div style="font-size:12px;color:#c8d8e8;line-height:1.8">';
   h += '<div><span class="se-class-ts">TOP SECRET // SCI // OPERATIONAL</span></div>';
   h += '<div style="margin-top:8px"><strong>SUBJECT:</strong> Multi-source intelligence correlation — elevated nation-state threat activity</div>';
