@@ -1207,7 +1207,7 @@ function buildStyles() {
   // === KEYFRAMES ===
   s += '@keyframes se-pulse{0%{opacity:1}50%{opacity:0.4}100%{opacity:1}}';
   s += '@keyframes se-scan{0%{background-position:0 0}100%{background-position:0 100%}}';
-  s += '@keyframes se-ticker-scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}';
+  s += '@keyframes se-ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}';
   s += '@keyframes se-blink{0%{opacity:1}50%{opacity:0}100%{opacity:1}}';
   s += '@keyframes se-glow{0%{box-shadow:0 0 5px rgba(0,170,255,0.3)}50%{box-shadow:0 0 20px rgba(0,170,255,0.7)}100%{box-shadow:0 0 5px rgba(0,170,255,0.3)}}';
   s += '@keyframes se-pulse-red{0%{box-shadow:0 0 5px rgba(255,34,68,0.3)}50%{box-shadow:0 0 25px rgba(255,34,68,0.8)}100%{box-shadow:0 0 5px rgba(255,34,68,0.3)}}';
@@ -1404,7 +1404,7 @@ function buildStyles() {
   // === TICKER ===
   s += '.se-ticker-wrap{background:#0c0810;border-top:1px solid #1a3a5c;';
   s += 'border-bottom:1px solid #1a3a5c;overflow:hidden;height:28px;position:relative}';
-  s += '.se-ticker-track{display:flex;white-space:nowrap;animation:se-ticker-scroll 60s linear infinite;';
+  s += '.se-ticker-track{display:flex;white-space:nowrap;animation:se-ticker-scroll 120s linear infinite;';
   s += 'position:absolute;top:0;height:100%;align-items:center}';
   s += '.se-ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 24px;';
   s += 'font-size:11px;letter-spacing:0.5px}';
@@ -1629,7 +1629,7 @@ function renderMainShell() {
   // Header
   h += '<div class="se-header">';
   h += '<div class="se-header-left">';
-  h += '<div class="se-header-icon">' + esc('[EYE]') + '</div>';
+  h += '<div class="se-header-icon" style="font-size:20px;font-weight:800;color:#00aaff;font-family:monospace;letter-spacing:2px">S/E</div>';
   h += '<div>';
   h += '<div class="se-header-title">SENTINEL EYE</div>';
   h += '<div class="se-header-subtitle">Global Cyber Threat Detection &amp; Counter-Operations Platform</div>';
@@ -1723,11 +1723,6 @@ function renderMainShell() {
   h += ' &bull; ';
   h += '<span style="color:#00ff88">ALL SYSTEMS NOMINAL</span>';
   h += '</div>';
-  h += '</div>';
-
-  // Bottom classification banner
-  h += '<div class="se-classif-banner">';
-  h += 'TOP SECRET // SCI // NOFORN // OPERATIONAL';
   h += '</div>';
 
   return h;
@@ -2687,10 +2682,7 @@ function renderSituation() {
 
   var h = '';
 
-  // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:6px 0;font-family:monospace;font-size:13px;font-weight:bold;letter-spacing:3px;border-bottom:2px solid #ff2244;">';
-  h += 'TOP SECRET // SCI // NOFORN // SENTINEL EYE';
-  h += '</div>';
+
 
   // Header bar
   h += '<div class="se-sit-header" style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px 10px;border-bottom:1px solid #1a3a5c;">';
@@ -2848,10 +2840,7 @@ function renderNations() {
 
   var h = '';
 
-  // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:6px 0;font-family:monospace;font-size:13px;font-weight:bold;letter-spacing:3px;border-bottom:2px solid #ff2244;">';
-  h += 'TOP SECRET // SCI // NOFORN // SENTINEL EYE';
-  h += '</div>';
+
 
   // Header
   h += '<div style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px 10px;border-bottom:1px solid #1a3a5c;">';
@@ -3003,10 +2992,7 @@ function renderPredict() {
 
   var h = '';
 
-  // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:6px 0;font-family:monospace;font-size:13px;font-weight:bold;letter-spacing:3px;border-bottom:2px solid #ff2244;">';
-  h += 'TOP SECRET // SCI // NOFORN // SENTINEL EYE — PREDICTIVE INTELLIGENCE';
-  h += '</div>';
+
 
   // Header
   h += '<div style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px 10px;border-bottom:1px solid #1a3a5c;">';
@@ -3140,7 +3126,8 @@ function renderPredict() {
   h += '</div>';
 
   // Geopolitical triggers
-  h += '<div style="font-family:monospace;font-size:11px;color:#4a6a8a;letter-spacing:2px;margin-bottom:8px;border-bottom:1px solid #1a3a5c;padding-bottom:6px;">ACTIVE GEOPOLITICAL TRIGGERS</div>';
+  h += '<div style="font-family:monospace;font-size:11px;color:#4a6a8a;letter-spacing:2px;margin-bottom:8px;border-bottom:1px solid #1a3a5c;padding-bottom:6px;">ACTIVE GEOPOLITICAL TRIGGERS (' + GEOPOLITICAL_TRIGGERS.length + ')</div>';
+  h += '<div style="max-height:400px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#1a3a5c transparent;">';
   for (var gt = 0; gt < GEOPOLITICAL_TRIGGERS.length; gt++) {
     var trigger = GEOPOLITICAL_TRIGGERS[gt];
     var gtColor = trigger.riskLevel === 'CRITICAL' ? '#ff2244' : trigger.riskLevel === 'HIGH' ? '#ff6622' : trigger.riskLevel === 'ELEVATED' ? '#ffaa00' : '#00aaff';
@@ -3153,6 +3140,7 @@ function renderPredict() {
     h += '<div style="font-family:monospace;font-size:8px;color:#4a6a8a;margin-top:3px;">HISTORICAL PRECEDENT: ' + esc(trigger.precedent) + '</div>';
     h += '</div>';
   }
+  h += '</div>';
 
   h += '</div>'; // end right column
   h += '</div>'; // end two-column
@@ -3171,10 +3159,7 @@ function renderEarlyWarning() {
 
   var h = '';
 
-  // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:6px 0;font-family:monospace;font-size:13px;font-weight:bold;letter-spacing:3px;border-bottom:2px solid #ff2244;">';
-  h += 'TOP SECRET // SCI // NOFORN // SENTINEL EYE — EARLY WARNING';
-  h += '</div>';
+
 
   // Header
   h += '<div style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px 10px;border-bottom:1px solid #1a3a5c;">';
@@ -3317,10 +3302,7 @@ function renderAptTrack() {
 
   var h = '';
 
-  // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:6px 0;font-family:monospace;font-size:13px;font-weight:bold;letter-spacing:3px;border-bottom:2px solid #ff2244;">';
-  h += 'TOP SECRET // SCI // NOFORN // SENTINEL EYE — APT TRACKING';
-  h += '</div>';
+
 
   // Header
   h += '<div style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px 10px;border-bottom:1px solid #1a3a5c;">';
@@ -3597,7 +3579,6 @@ function renderCounterOps() {
   var h = '';
 
   // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:4px 0;font-family:monospace;font-size:11px;letter-spacing:3px;font-weight:bold;">TOP SECRET // SCI // NOFORN // CYBER OPERATIONS</div>';
 
   // Section header
   h += '<div style="padding:20px 24px 0 24px;">';
@@ -3971,7 +3952,6 @@ function renderShield() {
   var h = '';
 
   // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:4px 0;font-family:monospace;font-size:11px;letter-spacing:3px;font-weight:bold;">TOP SECRET // SCI // CRITICAL INFRASTRUCTURE PROTECTION</div>';
 
   h += '<div style="padding:20px 24px 0 24px;">';
   h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">';
@@ -4258,7 +4238,6 @@ function renderIntelFusion() {
   var h = '';
 
   // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:4px 0;font-family:monospace;font-size:11px;letter-spacing:3px;font-weight:bold;">TOP SECRET // SCI // ORCON // NOFORN — INTELLIGENCE PRODUCT</div>';
 
   h += '<div style="padding:20px 24px 0 24px;">';
   h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">';
@@ -4514,7 +4493,6 @@ function renderWarSim() {
   var h = '';
 
   // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:4px 0;font-family:monospace;font-size:11px;letter-spacing:3px;font-weight:bold;">TOP SECRET // SCI // WARGAME ACTIVE — AUTHORIZED PERSONNEL ONLY</div>';
 
   h += '<div style="padding:20px 24px 0 24px;">';
   h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">';
@@ -4816,7 +4794,6 @@ function renderCommand() {
   var h = '';
 
   // Classification banner
-  h += '<div class="se-classification-banner" style="background:#cc0000;color:#fff;text-align:center;padding:4px 0;font-family:monospace;font-size:11px;letter-spacing:3px;font-weight:bold;">TOP SECRET // SCI // NOFORN — EXECUTIVE DECISION SUPPORT</div>';
 
   h += '<div style="padding:20px 24px 0 24px;">';
   h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">';
@@ -5720,7 +5697,7 @@ function renderOperationDetail(opId) {
     if (!basic) return '<div style="padding:40px;text-align:center;color:#556;">No detailed data available for this operation.</div>';
     var h = '';
     h += '<div style="background:#0a0e1a;border:1px solid #1a3a5c;border-radius:8px;padding:24px;margin:16px 0;">';
-    h += '<div style="background:#cc0000;color:#fff;text-align:center;padding:4px;font-size:10px;letter-spacing:3px;margin:-24px -24px 16px -24px;border-radius:8px 8px 0 0;">TOP SECRET // SCI // NOFORN // OPERATIONAL</div>';
+
     h += '<h3 style="color:#00aaff;font-family:monospace;letter-spacing:2px;margin:0 0 12px 0;">' + esc(basic.name) + ' (' + esc(basic.year) + ')</h3>';
     h += '<div style="color:#889;font-size:12px;margin-bottom:8px;"><span style="color:#ffaa00;">ATTRIBUTION:</span> ' + esc(basic.attribution) + '</div>';
     h += '<div style="color:#889;font-size:12px;margin-bottom:8px;"><span style="color:#ffaa00;">TYPE:</span> ' + esc(basic.type) + '</div>';
@@ -5735,7 +5712,7 @@ function renderOperationDetail(opId) {
   h += '<div style="background:#060a14;border:2px solid #1a3a5c;border-radius:8px;overflow:hidden;margin:16px 0;">';
 
   // Classification banner
-  h += '<div style="background:#cc0000;color:#fff;text-align:center;padding:6px;font-size:11px;letter-spacing:4px;font-weight:bold;">TOP SECRET // SCI // NOFORN // OPERATIONAL HISTORY</div>';
+
 
   // Codename banner
   h += '<div style="background:linear-gradient(135deg,#0a1628,#0d1f3c);padding:24px;border-bottom:1px solid #1a3a5c;">';
@@ -5859,7 +5836,7 @@ function renderNationDetail(nationId) {
   h += '<div style="background:#060a14;border:2px solid #1a3a5c;border-radius:8px;overflow:hidden;margin:16px 0;">';
 
   // Classification banner
-  h += '<div style="background:#cc0000;color:#fff;text-align:center;padding:6px;font-size:11px;letter-spacing:4px;font-weight:bold;">TOP SECRET // SCI // NOFORN — NATION-STATE CYBER PROFILE</div>';
+
 
   // Header
   h += '<div style="background:linear-gradient(135deg,#0a1628,#0d1f3c);padding:24px;border-bottom:1px solid #1a3a5c;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">';
@@ -6728,7 +6705,7 @@ function renderGlobalPostureBrief() {
   h += '<div style="background:#060a14;border:2px solid #1a3a5c;border-radius:8px;overflow:hidden;">';
 
   // Classification banner
-  h += '<div style="background:#cc0000;color:#fff;text-align:center;padding:8px;font-size:12px;letter-spacing:4px;font-weight:bold;">TOP SECRET // SCI // NOFORN</div>';
+
 
   // Title block
   h += '<div style="background:linear-gradient(135deg,#0a1628,#0d1f3c);padding:24px;border-bottom:2px solid #1a3a5c;text-align:center;">';
